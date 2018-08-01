@@ -4,7 +4,8 @@ from tinydb import TinyDB
 from apscheduler.schedulers.blocking import BlockingScheduler
 import datetime as dt
 
-class ReadData():
+
+class ReadData:
     
     def __init__(self):
         file_path = os.path.dirname(__file__)

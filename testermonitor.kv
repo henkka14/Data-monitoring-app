@@ -2,19 +2,19 @@
 
 
 <StartScreen>
-    FloatLayout:    
+    FloatLayout:
         Button:
             text: "Start monitoring"
             pos_hint: {'x': 0.4, 'y': 0.7}
             size_hint: 0.2, 0.2
-            on_press: root.push_start()
+            on_press: root.show_popup()
             font_size: 12
 
 
 <MonitoringScreen>
     FloatLayout:
         Label:
-            text_size: root.width, None 
+            text_size: root.width, None
             text: root.label_text
             on_ref_press: root.webopen()
             markup: True
@@ -23,5 +23,5 @@
             text: "End monitoring"
             pos_hint: {'x': 0.4, 'y': 0.7}
             size_hint: 0.2, 0.2
-            on_press: root.push_end()
+            on_press: root.show_popup()
             font_size: 12
