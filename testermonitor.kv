@@ -1,17 +1,36 @@
 #:kivy 1.10.1
+#:import Factory kivy.factory.Factory
 
-
-<StartScreen>
+<MyPopup@Popup>:
+    title: 'Are you sure you want to continue?'
+    title_align: 'center'
+    auto_dismiss: False
     FloatLayout:
+        Button:
+            pos_hint: {'x': 0.4, 'y': 0.65}
+            size_hint: 0.2, 0.2
+            id: continue_button
+            text: "Continue"
+            on_press: root.dismiss()
+        Button:
+            pos_hint: {'x': 0.4, 'y': 0.35}
+            size_hint: (0.2, 0.2)
+            text: "Cancel"
+            on_press: root.dismiss()
+
+<StartScreen>:
+    popup: Factory.MyPopup()
+    FloatLayout:    
         Button:
             text: "Start monitoring"
             pos_hint: {'x': 0.4, 'y': 0.7}
             size_hint: 0.2, 0.2
-            on_press: root.show_popup()
+            on_press: root.popup.open()
             font_size: 12
 
 
-<MonitoringScreen>
+<MonitoringScreen>:
+    popup: Factory.MyPopup()
     FloatLayout:
         Label:
             text_size: root.width, None
@@ -23,5 +42,20 @@
             text: "End monitoring"
             pos_hint: {'x': 0.4, 'y': 0.7}
             size_hint: 0.2, 0.2
-            on_press: root.show_popup()
+            on_press: root.popup.open()
+            font_size: 12
+
+<EndScreen>:
+    popup: Factory.MyPopup()
+    FloatLayout:    
+        Label:
+            text_size: root.width, None
+            text: root.label_text
+            markup: True
+            halign: 'center'
+        Button:
+            text: "Back to beginning"
+            pos_hint: {'x': 0.4, 'y': 0.7}
+            size_hint: 0.2, 0.2
+            on_press: root.go_to_start()
             font_size: 12
